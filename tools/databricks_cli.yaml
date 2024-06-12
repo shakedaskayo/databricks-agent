@@ -12,7 +12,7 @@ tools:
           # Install databricks CLI
           apk update && \
           apk upgrade && \
-          apk add git
+          apk add curl
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
       fi
 

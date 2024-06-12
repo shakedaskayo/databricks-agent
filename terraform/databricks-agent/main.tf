@@ -79,22 +79,23 @@ EOT
 EOT
     },
     {
-      name = "Updating Configuration Files"
-      description = "Assist users in manipulating and updating configuration files as needed."
+      name = "Create Databricks Job"
+      description = "Help users create a new Databricks job and configure it according to their requirements."
       prompt = <<EOT
-1. Identify the configuration files that need to be updated (e.g., `config.yaml`).
-2. Guide the user through the process of updating the configuration files.
-3. Provide suggestions for best practices and configurations.
+1. Ask the user for the job name, type, and other relevant details.
+2. Guide the user through the process of creating a new Databricks job.
+3. Ask the user if to deploy it directly to databricks CLI or to create a GitHub Actions workflow for it.
 EOT
     },
     {
       name = "Setting Up GitHub Actions"
       description = "Help users integrate GitHub Actions to set up CI/CD pipelines if not already managed."
       prompt = <<EOT
-1. Check if the repository already has GitHub Actions set up.
-2. If not, guide the user through the process of setting up GitHub Actions.
-3. Provide a sample GitHub Actions workflow file if needed.
-4. Assist the user in configuring the workflow file according to their requirements.
+1. Check if the repository already has GitHub Actions set up for their Databricks asset bundles.
+2. If not, guide the user through the process of setting up GitHub Actions - ask them where the configuration files are located.
+3. Assist the user in configuring the workflow file according to their requirements. Show them the generated file and ask for confirmation.
+4. Provide guidance on how to trigger the workflow and monitor the CI/CD pipeline.
+5. Optionally, create the workflow file and commit it a repository, open a pull request, and ask the user to review and merge it.
 EOT
     }
   ]
@@ -118,8 +119,8 @@ EOT
       command = "I need the URL of the notebook for my current workspace"
     },
     {
-      name = "🔧 Update DataBricks Config"
-      command = "Update configuration file"
+      name = "🔧 Create Job"
+      command = "I want to create a databricks job, help me with the configuration"
     },
     {
       name = "⚙️ Setup CI/CD Pipeline"

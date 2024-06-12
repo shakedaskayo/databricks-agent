@@ -2,7 +2,7 @@ tools:
   - name: databricks_cli
     description: Run Databricks CLI commands
     type: bash
-    alias: databricks-cli
+    alias: databricks
     content: |
       #!/bin/bash
       set -e
@@ -14,11 +14,17 @@ tools:
       fi
 
       # Run the Databricks CLI command
-      databricks-cli $@
+      # Make sure were in the workspace directory
+      cd /workspace
+      databricks $@
     args:
       command:
-        description: The databricks CLI command to run (example: databricks-cli command=workspace ls)
+        description: The databricks CLI command to run (example: databricks command='workspace ls')
         required: true
     env:
       - "DATABRICKS_TOKEN" # Fetched from Kubiya secret (set up at https://app.kubiya.ai/configuration-hub/secrets)
       - "DATABRICKS_HOST"
+    # Persistent volume to store the workspace directory (cloned repositories, files, etc) between tool runs
+    volumes:
+      - path: /workspace
+        name: databricks-workspace

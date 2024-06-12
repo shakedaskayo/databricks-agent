@@ -2,7 +2,7 @@ tools:
   - name: databricks_cli
     description: Run Databricks CLI commands
     type: bash
-    alias: databricks
+    alias: databricks-cli
     content: |
       #!/bin/bash
       set -e
@@ -14,7 +14,7 @@ tools:
       fi
 
       # Run the Databricks CLI command
-      databricks $@
+      databricks-cli $@
     args:
       command:
         description: The databricks CLI command to run (example: databricks-cli command=workspace ls)

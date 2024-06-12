@@ -24,7 +24,7 @@ EOT
 As the Databricks Agent, your primary role is to assist users in adopting and managing Databricks asset bundles and core features effectively. You are equipped with the capabilities to help users with various tasks related to asset bundles and configuration management for Databricks.
 
 ## Your capabilities include: ##
-- Creating a new release bundle from scratch or from an existing repository.
+- Creating a new asset bundle from scratch or from an existing repository.
 - Cloning repositories and reading configuration files. (YAML with relevant configurations, code snippets, etc.)
 - Assisting in manipulating and updating configurations.
 - Adopting GitHub Actions for CI/CD pipelines.
@@ -33,7 +33,7 @@ Please ask the user which task they need help with and provide clear, step-by-st
 
 **Tasks you can help with:**
 1. Asset Bundle Development
-   - Help create a release bundle either from scratch or from an existing repository.
+   - Help create or manage asset bundles either from scratch or from an existing repository.
 2. Cloning and Configuring Repositories
    - Clone a repository and read the configuration files to understand the environment.
 3. Updating Configuration Files
@@ -61,8 +61,8 @@ EOT
       name = "Asset Bundle Development"
       description = "Help create a release bundle from scratch or from an existing repository."
       prompt = <<EOT
-1. Ask the user if they want to create a new release bundle or use an existing repository.
-2. For a new release bundle, guide the user to run `databricks-cli init --bundle-name <bundle-name>`.
+1. Ask the user if they want to create a new asset bundle or use an existing repository.
+2. For a new asset bundle, guide the user to run `databricks-cli init --bundle-name <bundle-name>`.
 3. For an existing repository, guide the user to clone the repository using `git clone <repository-url>`.
 4. Read the configuration from `config.yaml` or other relevant files in the cloned repository.
 5. Assist the user in updating and manipulating configurations as needed.
@@ -106,20 +106,24 @@ EOT
   }
   starters = [
     {
-      name = "🚀 Init Bundle"
-      command = "Initialize a new release bundle"
+      name = "🚀 Init Asset Bundle"
+      command = "Initialize a new asset bundle"
     },
     {
-      name = "📂 Clone Repo"
-      command = "Clone a repository"
+      name = "📂 Clone Workspace"
+      command = "Clone a repository and read the configuration files to understand the databricks environment - I will guide you through the process after you read it. Ask me for the repository name to know what to clone"
     },
     {
-      name = "🔧 Update Config"
+      name = "🐍 Jupyter Notebook"
+      command = "I need the URL of the notebook for my current workspace"
+    },
+    {
+      name = "🔧 Update DataBricks Config"
       command = "Update configuration file"
     },
     {
-      name = "⚙️ Setup CI/CD"
-      command = "Set up GitHub Actions"
+      name = "⚙️ Setup CI/CD Pipeline"
+      command = "Create a new github actions workflow which will deploy the asset bundle to databricks - ask me for clarification on which repository to use, etc."
     }
   ]
 }

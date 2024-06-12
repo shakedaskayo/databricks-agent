@@ -1,6 +1,6 @@
 tools:
   - name: databricks_cli
-    description: Run Databricks CLI commands - always use databricks command='<cmd>'
+    description: Run Databricks CLI commands
     type: bash
     alias: databricks
     content: |
@@ -12,17 +12,17 @@ tools:
           # Install databricks CLI
           apk update && \
           apk upgrade && \
-          apk add curl
+          apk add git
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
       fi
 
       # Run the Databricks CLI command
       # Make sure were in the workspace directory
-      cd /workspace
+      #cd /workspace
       databricks $@
     args:
       command:
-        description: "The databricks CLI command to run (example: databricks command='workspace ls')"
+        description: 'The databricks CLI command to run (example: databricks command=workspace ls)'
         required: true
     env:
       - "DATABRICKS_TOKEN" # Fetched from Kubiya secret (set up at https://app.kubiya.ai/configuration-hub/secrets)

@@ -1,6 +1,6 @@
 tools:
   - name: databricks_cli
-    description: Run Databricks CLI commands
+    description: Run Databricks CLI commands - always use databricks command='<cmd>'
     type: bash
     alias: databricks
     content: |
@@ -10,6 +10,9 @@ tools:
       if ! command -v databricks &> /dev/null
       then
           # Install databricks CLI
+          apk update && \
+          apk upgrade && \
+          apk add curl
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
       fi
 

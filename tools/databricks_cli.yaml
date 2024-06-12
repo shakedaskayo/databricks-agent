@@ -19,7 +19,7 @@ tools:
       databricks $@
     args:
       command:
-        description: The databricks CLI command to run (example: databricks command='workspace ls')
+        description: "The databricks CLI command to run (example: databricks command='workspace ls')"
         required: true
     env:
       - "DATABRICKS_TOKEN" # Fetched from Kubiya secret (set up at https://app.kubiya.ai/configuration-hub/secrets)
